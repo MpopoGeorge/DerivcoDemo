@@ -170,11 +170,11 @@
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\File.cs" />
-    <Compile Include="ViewModels\FileType.cs" />
-    <Compile Include="ViewModels\OrderDetailsModel.cs" />
-    <Compile Include="ViewModels\OrderModel.cs" />
-    <Compile Include="ViewModels\ShoppingCartModel.cs" />
+    <Compile Include="Helpers\File.cs" />
+    <Compile Include="Helpers\FileType.cs" />
+    <Compile Include="Helpers\OrderDetailsModel.cs" />
+    <Compile Include="Helpers\OrderModel.cs" />
+    <Compile Include="Helpers\ShoppingCartModel.cs" />
     <Compile Include="ViewModels\ShoppingViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />

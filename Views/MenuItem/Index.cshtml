@@ -18,42 +18,45 @@
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="form-group">
-                Category: @Html.DropDownListFor(Model => Model.CategoryId, new SelectList(Model.CategorySelectListItem, "Value", "Text", new { htmlAttributes = new { @class = "form-control" } }))
+                @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                     @Html.DropDownListFor(Model => Model.CategoryId, new SelectList(Model.CategorySelectListItem, "Value", "Text", new { htmlAttributes = new { @class = "form-control" } }))
+                </div>
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="form-group">
-                Code: @Html.TextBoxFor(Model => Model.MenuItemCode, new { @Class = "form-control", automcomplete = "off" })
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="form-group">
-                Name: @Html.TextBoxFor(Model => Model.MenuItemName, new { @Class = "form-control", automcomplete = "off" })
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="form-group">
-                Description: @Html.TextBoxFor(Model => Model.MenuItemDescription, new { @Class = "form-control", automcomplete = "off" })
+                Code: @Html.EditorFor(Model => Model.MenuItemCode, new { @Class = "form-control", automcomplete = "off" })
             </div>
         </div>
     </div>
 
     <div class="row">
-
         <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="form-group">
-                Price: @Html.TextBoxFor(Model => Model.MenuItemPrice, new { @Class = "form-control", automcomplete = "off" })
+                Name: @Html.EditorFor(Model => Model.MenuItemName, new { @Class = "form-control", automcomplete = "off" })
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="form-group">
-                Thumbnail: @Html.TextBoxFor(Model => Model.ItemImagePath, new { type = "file", @Class = "form-control", automcomplete = "off" })
+                Description: @Html.EditorFor(Model => Model.MenuItemDescription, new { @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Price: @Html.EditorFor(Model => Model.MenuItemPrice, new { @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Thumbnail: @Html.EditorFor(Model => Model.ItemImagePath, new { type = "file", @Class = "form-control", automcomplete = "off" })
             </div>
         </div>
     </div>
