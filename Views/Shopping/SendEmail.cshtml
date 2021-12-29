@@ -1,0 +1,24 @@
+﻿@model DerivcoDemo.ViewModels.OrderModel
+@{
+    ViewBag.Title = "SendEmail";
+}
+
+@if (ViewBag.msg != null)
+{
+    <div class="alert alert-success">@ViewBag.msg</div>
+}
+
+<h2>SendEmail</h2>
+@using (Html.BeginForm())
+{
+    <div class="input-group">
+        <input type="text" name="windowUserEmail" class="form-control" />
+        <div class="input-group-btn ">
+            <button type="submit" id="SendMailBtn" class="btn btn-outline-primary ">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+}
+<hr />
+

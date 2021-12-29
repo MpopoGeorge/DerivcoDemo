@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DerivcoDemo.ViewModels.ShoppingViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Food Menu</h1>
+</div>
+<div class="container-fluid row">
+        @foreach (var item in Model)
+        {
+
+            <div class="card col-sm-12 col-md-4 col-lg-4 mb-4 border-0">
+                <!-- Card Header - Dropdown -->
+                <div class="card-body">
+                    <img class="card-img-top img-fluid" src="@Url.Content(item.ItemImagePath)" alt="Card image cap" width="100%">
+                    <h5 class="m-0 font-weight-bold text-primary"> @item.MenuItemName</h5>
+                    <div class="col-md-12">
+                        <p>@item.MenuItemDescription</p>
+                        <p>Code: @item.MenuItemCode</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+                            <strong>R @item.MenuItemPrice.ToString()</strong>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <input type="button" name="AddToCart" value="Add to Cart" class="btn btn-outline-primary btn-block" menuItemId="@item.MenuItemId" id="btnAddToCart" onclick="AddToCart(this)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("menuItemId");
+        //alert(itemId);
+        var formData = new FormData();
+        formData.append("menuItemId", itemId);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Shopping/Index',
+            success: function (data) {
+                if (data.Success) {
+                    $("#cartItem").text("Cart(" + data.Counter + ")");
+                }
+            },
+            error: function () {
+                alert("Error adding item to shopping cart");
+            }
+        });
+    }
+</script>

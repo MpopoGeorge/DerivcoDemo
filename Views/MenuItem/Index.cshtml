@@ -1,0 +1,113 @@
+﻿@model DerivcoDemo.ViewModels.MenuItemViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4 pt-4">
+    <div class="d-sm-flex align-items-start justify-content-between mb-4">
+        <h1 class="h5 mb-0 text-gray-800"><i class="fas fa-fw fa-plus text-primary"></i> Add Menu Item</h1>
+    </div>
+    <div class="d-sm-flex align-items-end justify-content-between mb-4">
+        <h1 class="h5 mb-0 text-gray-800"><i class="fas fa-fw fa-bars text-defualt"></i> Menu Items</h1>
+    </div>
+</div>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Category: @Html.DropDownListFor(Model => Model.CategoryId, new SelectList(Model.CategorySelectListItem, "Value", "Text", new { htmlAttributes = new { @class = "form-control" } }))
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Code: @Html.TextBoxFor(Model => Model.MenuItemCode, new { @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Name: @Html.TextBoxFor(Model => Model.MenuItemName, new { @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Description: @Html.TextBoxFor(Model => Model.MenuItemDescription, new { @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Price: @Html.TextBoxFor(Model => Model.MenuItemPrice, new { @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                Thumbnail: @Html.TextBoxFor(Model => Model.ItemImagePath, new { type = "file", @Class = "form-control", automcomplete = "off" })
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <input type="button" name="save" id="btnSave" class="btn btn-outline-primary" value="Save">&nbsp;
+        <input type="button" name="reset" class="btn btn-outline-danger" value="Reset">
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            SaveMenuItem();
+        });
+
+        $("select").last().addClass("form-control");
+    });
+
+    function ResetMenuItem() {
+        $("#CategoryId").val("1");
+        $("#MenuItemCode").val("");
+        $("#MenuItemName").val("");
+        $("#MenuItemDescription").val("");
+        $("#MenuItemPrice").val("");
+        $("#ItemImagePath").val("");
+    }
+
+
+    function SaveMenuItem() {
+        var formdData = new FormData();
+        formdData.append("CategoryId", $("#CategoryId").val());
+        formdData.append("MenuItemCode", $("#MenuItemCode").val());
+        formdData.append("MenuItemName", $("#MenuItemName").val());
+        formdData.append("MenuItemDescription", $("#MenuItemDescription").val());
+        formdData.append("MenuItemPrice", $("#MenuItemPrice").val());
+        formdData.append("ItemImagePath", $("#ItemImagePath").get(0).files[0]);
+
+        $.ajax({
+            async: true,
+            dataType: 'JSON',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            url: '/MenuItem/Index',
+            data: formdData,
+            success: function (data) {
+                if (data.Success) {
+                    alert(data.Message);
+                    ResetMenuItem();
+                }
+            },
+            error: function () {
+                alert("There is a problem adding an item to inventory");
+            }
+        });
+    }
+</script>

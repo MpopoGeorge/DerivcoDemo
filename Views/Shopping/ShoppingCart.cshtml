@@ -1,0 +1,48 @@
+﻿@model IEnumerable <DerivcoDemo.ViewModels.ShoppingCartModel>
+@{
+    ViewBag.Title = "ShoppingCart";
+    decimal TotalAmount = 0.00M;
+}
+
+<h2>ShoppingCart</h2>
+@using (Html.BeginForm("AddOrder", "Shopping",FormMethod.Post))
+{
+
+<table class="table table-condensed">
+    @foreach (var item in Model)
+    {
+        TotalAmount += item.Total;
+        <tr>
+            <td>
+                <img src="@Url.Content(item.ItemImagePath)" class="img-rounded" height="30px" width="30px" alt="Alternate Text" />
+            </td>
+            <td>
+                @item.ItemName
+            </td>
+            <td>
+                @item.Quantity.ToString("#,##0")
+            </td>
+            <td>
+                @item.UnitPrice.ToString("#,##0.00")
+            </td>
+            <td>
+                @item.Total.ToString("#,##0.00")
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="5" style="text-align:right">
+            <h3><strong>Total Amount:</strong> @TotalAmount.ToString("#,##0.00")</h3>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:left">
+            @Html.ActionLink("Back To Shopping", "Index", "Shopping")
+        </td>
+        <td colspan="5" style="text-align:right">
+            <input type="submit" name="Save" value="Proceed to Checkout" class="btn btn-outline-primary" id="SaveOrder" />
+        </td>
+    </tr>
+</table>
+
+}
