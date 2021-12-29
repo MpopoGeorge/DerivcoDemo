@@ -7,23 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DerivcoDemo.Models
+namespace DerivcoDemo.EDMX
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class CustomerOrder
     {
         public int OrderId { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
         public System.DateTime OrderDate { get; set; }
         public string OrderNumber { get; set; }
         public int CustomerId { get; set; }
-        public IEnumerable<SelectListItem> CustomerSelectListItem { get; set; }
     }
 }

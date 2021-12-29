@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DerivcoDemo.Models
+namespace DerivcoDemo.EDMX
 {
     using System;
     using System.Data.Entity;
@@ -25,10 +25,10 @@ namespace DerivcoDemo.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<CustomerOrder> CustomerOrders { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

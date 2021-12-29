@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DerivcoDemo.ViewModels
 {
-    public class ShoppingCartModel
+    public class ShoppingCart
     {
         public string MenuItemId { get; set; }
         public decimal Quantity { get; set; }

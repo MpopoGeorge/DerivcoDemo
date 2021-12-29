@@ -136,45 +136,45 @@
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Category.cs">
+    <Compile Include="EDMX\Category.cs">
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer.cs">
+    <Compile Include="EDMX\Customer.cs">
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerOrder.cs">
+    <Compile Include="EDMX\CustomerOrder.cs">
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DerivcoDemoModel.Context.cs">
+    <Compile Include="EDMX\DerivcoDemoModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DerivcoDemoModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DerivcoDemoModel.cs">
+    <Compile Include="EDMX\DerivcoDemoModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DerivcoDemoModel.Designer.cs">
+    <Compile Include="EDMX\DerivcoDemoModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DerivcoDemoModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MenuItem.cs">
+    <Compile Include="EDMX\MenuItem.cs">
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderDetail.cs">
+    <Compile Include="EDMX\OrderDetail.cs">
       <DependentUpon>DerivcoDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\File.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Helpers\FileType.cs" />
-    <Compile Include="Helpers\OrderDetailsModel.cs" />
-    <Compile Include="Helpers\OrderModel.cs" />
-    <Compile Include="Helpers\ShoppingCartModel.cs" />
+    <Compile Include="Models\OrderDetails.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="ViewModels\ShoppingViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
@@ -185,27 +185,27 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DB Scripts\script.sql" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Models\DerivcoDemoModel.Context.tt">
+    <Content Include="EDMX\DerivcoDemoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DerivcoDemoModel.edmx</DependentUpon>
       <LastGenOutput>DerivcoDemoModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DerivcoDemoModel.tt">
+    <Content Include="EDMX\DerivcoDemoModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DerivcoDemoModel.edmx</DependentUpon>
       <LastGenOutput>DerivcoDemoModel.cs</LastGenOutput>
     </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DerivcoDemoModel.edmx">
+    <EntityDeploy Include="EDMX\DerivcoDemoModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DerivcoDemoModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DerivcoDemoModel.edmx.diagram">
+    <Content Include="EDMX\DerivcoDemoModel.edmx.diagram">
       <DependentUpon>DerivcoDemoModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

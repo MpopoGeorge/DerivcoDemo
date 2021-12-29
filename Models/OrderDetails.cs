@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DerivcoDemo.ViewModels
 {
-    public class OrderDetailsModel
+    public class OrderDetails
     {
         public int OrderId { get; set; }
     }

@@ -7,18 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DerivcoDemo.Models
+namespace DerivcoDemo.EDMX
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class MenuItem
     {
-        public int OrderDetailId { get; set; }
-        public int OrderId { get; set; }
-        public string MenuItemId { get; set; }
-        public decimal Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal TotalAmount { get; set; }
+        public System.Guid MenuItemId { get; set; }
+        public int CategoryId { get; set; }
+        public string MenuItemCode { get; set; }
+        public string MenuItemName { get; set; }
+        public string MenuItemDescription { get; set; }
+        public string MenuItemImagePath { get; set; }
+        public decimal MenuItemPrice { get; set; }
     }
 }

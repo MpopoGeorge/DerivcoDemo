@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DerivcoDemo.Models;
+using DerivcoDemo.EDMX;
 
 namespace DerivcoDemo.Controllers
 {
@@ -42,7 +42,7 @@ namespace DerivcoDemo.Controllers
         }
 
         // POST: CustomerOrders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,7 +74,7 @@ namespace DerivcoDemo.Controllers
         }
 
         // POST: CustomerOrders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

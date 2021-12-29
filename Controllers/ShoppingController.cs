@@ -1,4 +1,4 @@
-﻿using DerivcoDemo.Models;
+﻿using DerivcoDemo.EDMX;
 using DerivcoDemo.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace DerivcoDemo.Controllers
     public class ShoppingController : Controller
     {
         private Derivcoonline_DbEntities _DbEntities;
-        private List<ShoppingCartModel> listOfShoppingCartModels;
+        private List<ShoppingCart> listOfShoppingCarts;
 
         private int OrderId = 0;
         private int customerId = 0;
@@ -22,7 +22,7 @@ namespace DerivcoDemo.Controllers
         public ShoppingController()
         {
             _DbEntities = new Derivcoonline_DbEntities();
-            listOfShoppingCartModels = new List<ShoppingCartModel>();
+            listOfShoppingCarts = new List<ShoppingCart>();
         }
         // GET: Cart
         public ActionResult Index()
@@ -49,46 +49,46 @@ namespace DerivcoDemo.Controllers
         [HttpPost]
         public JsonResult Index(string menuItemId)
         {
-            ShoppingCartModel objShoppingCartModel = new ShoppingCartModel();
+            ShoppingCart objShoppingCart = new ShoppingCart();
             MenuItem ObjMenuItem = _DbEntities.MenuItems.Single(model=> model.MenuItemId.ToString() == menuItemId);
             if (Session["CartCounter"] != null)
             {
-                listOfShoppingCartModels = Session["CartItem"] as List<ShoppingCartModel>;
+                listOfShoppingCarts = Session["CartItem"] as List<ShoppingCart>;
             }
-            if (listOfShoppingCartModels.Any(model => model.MenuItemId == menuItemId))
+            if (listOfShoppingCarts.Any(model => model.MenuItemId == menuItemId))
             {
-                objShoppingCartModel = listOfShoppingCartModels.Single(model => model.MenuItemId == menuItemId);
-                objShoppingCartModel.Quantity = objShoppingCartModel.Quantity + 1;
-                objShoppingCartModel.Total = objShoppingCartModel.Quantity * objShoppingCartModel.UnitPrice;
+                objShoppingCart = listOfShoppingCarts.Single(model => model.MenuItemId == menuItemId);
+                objShoppingCart.Quantity = objShoppingCart.Quantity + 1;
+                objShoppingCart.Total = objShoppingCart.Quantity * objShoppingCart.UnitPrice;
             }
             else
             {
-                objShoppingCartModel.MenuItemId = menuItemId;
-                objShoppingCartModel.ItemImagePath = ObjMenuItem.MenuItemImagePath;
-                objShoppingCartModel.ItemName = ObjMenuItem.MenuItemName;
-                objShoppingCartModel.Quantity = 1;
-                objShoppingCartModel.Total = ObjMenuItem.MenuItemPrice;
-                objShoppingCartModel.UnitPrice = ObjMenuItem.MenuItemPrice;
-                listOfShoppingCartModels.Add(objShoppingCartModel);
+                objShoppingCart.MenuItemId = menuItemId;
+                objShoppingCart.ItemImagePath = ObjMenuItem.MenuItemImagePath;
+                objShoppingCart.ItemName = ObjMenuItem.MenuItemName;
+                objShoppingCart.Quantity = 1;
+                objShoppingCart.Total = ObjMenuItem.MenuItemPrice;
+                objShoppingCart.UnitPrice = ObjMenuItem.MenuItemPrice;
+                listOfShoppingCarts.Add(objShoppingCart);
             }
 
-            Session["CartCounter"] = listOfShoppingCartModels.Count;
-            Session["CartItem"] = listOfShoppingCartModels;
+            Session["CartCounter"] = listOfShoppingCarts.Count;
+            Session["CartItem"] = listOfShoppingCarts;
 
-            return Json(new { Success = true, Counter = listOfShoppingCartModels.Count }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = true, Counter = listOfShoppingCarts.Count }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ShoppingCart()
         {
-            listOfShoppingCartModels = Session["CartItem"] as List<ShoppingCartModel>;
-            return View(listOfShoppingCartModels);
+            listOfShoppingCarts = Session["CartItem"] as List<ShoppingCart>;
+            return View(listOfShoppingCarts);
         }
 
         [HttpPost]
         public ActionResult AddOrder()
         {
 
-            listOfShoppingCartModels = Session["CartItem"] as List<ShoppingCartModel>;
+            listOfShoppingCarts = Session["CartItem"] as List<ShoppingCart>;
             
             Customer customerObj = new Customer
             {
@@ -115,7 +115,7 @@ namespace DerivcoDemo.Controllers
 
             string orderNUmber = orderObj.OrderNumber.ToString();
 
-            foreach (var item in listOfShoppingCartModels)
+            foreach (var item in listOfShoppingCarts)
             {
                 OrderDetail OrderDetailsObj = new OrderDetail();
                 OrderDetailsObj.TotalAmount = item.Total;

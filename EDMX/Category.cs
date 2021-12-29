@@ -7,18 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DerivcoDemo.Models
+namespace DerivcoDemo.EDMX
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Category
     {
-        public int CustomerId { get; set; }
-        public string CustomerUserName { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string TelephoneNumber { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryCode { get; set; }
+        public string CategoryName { get; set; }
     }
 }

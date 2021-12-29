@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Derivcoonline_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Derivcoonline_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -63,10 +63,22 @@
           <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" Schema="orders" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="orders" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Derivcoonline_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -83,27 +95,9 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="MenuItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MenuItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MenuItemDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="MenuItemImagePath" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MenuItemPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="MenuItemDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityContainer Name="Derivcoonline_DbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="MenuItems" EntityType="Self.MenuItem" />
-          <EntitySet Name="OrderDetails" EntityType="Derivcoonline_DbModel.OrderDetail" />
-          <EntitySet Name="CustomerOrders" EntityType="Derivcoonline_DbModel.CustomerOrder" />
-          <EntitySet Name="Customers" EntityType="Derivcoonline_DbModel.Customer" />
-        </EntityContainer>
-        <EntityType Name="OrderDetail">
-          <Key>
-            <PropertyRef Name="OrderDetailId" />
-          </Key>
-          <Property Name="OrderDetailId" Type="Int32" Nullable="false" />
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="MenuItemId" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="CustomerOrder">
           <Key>
@@ -111,26 +105,45 @@
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="OrderNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Customer">
+        <EntityType Name="OrderDetail">
           <Key>
-            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="OrderDetailId" />
           </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerUserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="MenuItemId" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityContainer Name="Derivcoonline_DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="MenuItems" EntityType="Self.MenuItem" />
+          <EntitySet Name="CustomerOrders" EntityType="Self.CustomerOrder" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Derivcoonline_DbModelStoreContainer" CdmEntityContainer="Derivcoonline_DbEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Derivcoonline_DbModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerUserName" ColumnName="CustomerUserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="Derivcoonline_DbModel.Category">
               <MappingFragment StoreEntitySet="Categories">
@@ -143,47 +156,35 @@
           <EntitySetMapping Name="MenuItems">
             <EntityTypeMapping TypeName="Derivcoonline_DbModel.MenuItem">
               <MappingFragment StoreEntitySet="MenuItems">
-                <ScalarProperty Name="MenuItemDescription" ColumnName="MenuItemDescription" />
                 <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="MenuItemCode" ColumnName="MenuItemCode" />
                 <ScalarProperty Name="MenuItemName" ColumnName="MenuItemName" />
+                <ScalarProperty Name="MenuItemDescription" ColumnName="MenuItemDescription" />
                 <ScalarProperty Name="MenuItemImagePath" ColumnName="MenuItemImagePath" />
                 <ScalarProperty Name="MenuItemPrice" ColumnName="MenuItemPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="Derivcoonline_DbModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CustomerOrders">
             <EntityTypeMapping TypeName="Derivcoonline_DbModel.CustomerOrder">
               <MappingFragment StoreEntitySet="CustomerOrder">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Derivcoonline_DbModel.Customer">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="CustomerUserName" ColumnName="CustomerUserName" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="Derivcoonline_DbModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

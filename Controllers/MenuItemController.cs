@@ -1,4 +1,4 @@
-﻿using DerivcoDemo.Models;
+﻿using DerivcoDemo.EDMX;
 using DerivcoDemo.ViewModels;
 using System;
 using System.IO;
