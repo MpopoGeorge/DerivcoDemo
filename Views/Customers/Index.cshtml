@@ -4,11 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="d-sm-flex align-items-center justify-content-between mb-4 pt-4">
+    <div class="d-sm-flex align-items-start justify-content-between mb-4">
+        <h1 class="h5 mb-0 text-gray-800"><i class="fas fa-fw fa-plus text-primary"></i> Add New Customer</h1>
+    </div>
+    <div class="d-sm-flex align-items-end justify-content-between mb-4">
+        <h1 class="h5 mb-0 text-gray-800"><i class="fas fa-fw fa-users text-defualt"></i> Customer</h1>
+    </div>
+</div>
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="d-sm-flex flex-row-reverse mb-4">
+    <a href="@Url.Action("Create", "Customers")" class="btn btn-outline-success btn-sm">
+        <i class="fas fa-fw fa-plus"></i>
+    </a>
+</div>
 <table class="table">
     <tr>
         <th>
@@ -29,29 +39,36 @@
         <th>Actions</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerUserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TelephoneNumber)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerUserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmailAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TelephoneNumber)
+    </td>
+    <td>
+        <a href="@Url.Action("Edit", "Customers", new { id = item.CustomerId })" class="btn btn-outline-warning btn-sm">
+            <i class="fas fa-fw fa-pencil-alt"></i>
+        </a>
+        <a href="@Url.Action("Details", "Customers", new { id = item.CustomerId })" class="btn btn-outline-primary btn-sm">
+            <i class="fas fa-fw fa-eye"></i>
+        </a>
+        <a href="@Url.Action("Delete", "Customers", new { id = item.CustomerId })" class="btn btn-outline-danger btn-sm">
+            <i class="fas fa-fw fa-trash"></i>
+        </a>
+    </td>
+</tr>
+    }
 
 </table>
